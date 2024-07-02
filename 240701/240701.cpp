@@ -73,6 +73,17 @@ int solution(std::vector<int> nums) {
     return answer;
 }
 
+int main()
+{
+    std::vector<int> Example1 = { 1,2,3,4 };
+
+    solution(Example1);
+
+    std::vector<int> Example2 = { 1,2,7,6,4 };
+
+    solution(Example2);
+}
+
 //using namespace std;
 //
 //int solution(vector<int> nums) {
@@ -115,17 +126,6 @@ int solution(std::vector<int> nums) {
 //
 //    cout << answer << endl;
 //    return answer;
-//}
-//
-//int main()
-//{
-//    std::vector<int> Example1 = { 1,2,3,4 };
-//
-//    solution(Example1);
-//
-//    std::vector<int> Example2 = { 1,2,7,6,4 };
-//
-//    solution(Example2);
 //}
 
 // 실패 -------------------------------------------------------------------------------------------

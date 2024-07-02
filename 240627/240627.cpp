@@ -34,6 +34,9 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
         const int End = Command[1] - 1;
         const int AnswerNum = Command[2] - 1;
 
+        int NewCapacity = End - Start + 1;
+        SliceArray.reserve(NewCapacity);
+
         for (int i = Start; i <= End; ++i)
         {
             SliceArray.push_back(array[i]);
