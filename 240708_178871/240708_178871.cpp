@@ -47,6 +47,51 @@
 //}
 //--------------------------------------------------------------------------------------------------------------------------
 
+// 연산을 조금 줄이기 위한 코드 --------------------------------------------------------------------------------------------
+//std::vector<std::string> solution(std::vector<std::string> players, std::vector<std::string> callings)
+//{
+//    std::vector<std::string> answer;
+//
+//    const int playersSize = players.size();
+//    answer.reserve(playersSize);
+//
+//    std::string PrevCallPlayer = "";
+//    int PrevCallPlayerIndex = -1;
+//
+//    for (std::string CallPlayer : callings)
+//    {
+//        if (CallPlayer == PrevCallPlayer)
+//        {
+//            int Index = PrevCallPlayerIndex;
+//
+//            std::string Temp = players[Index];
+//            players[Index] = players[Index - 1];
+//            players[Index - 1] = Temp;
+//
+//            PrevCallPlayerIndex = Index - 1;
+//        }
+//        else
+//        {
+//            int Index = find(players.begin(), players.end(), CallPlayer) - players.begin();
+//
+//            std::string Temp = players[Index];
+//            players[Index] = players[Index - 1];
+//            players[Index - 1] = Temp;
+//
+//            PrevCallPlayer = CallPlayer;
+//            PrevCallPlayerIndex = Index - 1;
+//        }
+//    }
+//
+//    for (std::string player : players)
+//    {
+//        answer.push_back(player);
+//    }
+//
+//    return answer;
+//}
+//--------------------------------------------------------------------------------------------------------------------------
+
 std::vector<std::string> solution(std::vector<std::string> players, std::vector<std::string> callings)
 {
     std::vector<std::string> answer;
@@ -74,4 +119,6 @@ int main()
     std::vector<std::string> callings = { "kai", "kai", "mine", "mine" };
 
     PrintResult(players, callings);
+
+    //std::vector<std::string> callings0 = { "soe", "kai", "mine", "mine" };
 }
