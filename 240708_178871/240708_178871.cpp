@@ -20,7 +20,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
+#include <map>
 
 // 무조건 시간초과되는 풀이 ------------------------------------------------------------------------------------------------
 //std::vector<std::string> solution(std::vector<std::string> players, std::vector<std::string> callings) {
@@ -96,7 +97,50 @@ std::vector<std::string> solution(std::vector<std::string> players, std::vector<
 {
     std::vector<std::string> answer;
 
+    const int playerNum = players.size();
+    answer.reserve(playerNum);
+
+    std::unordered_map<std::string, int> PlayerSequence;
+    std::map<int, std::string> PlayerName;
+
+    for (int i = 0; i < playerNum; i++)
+    {
+        PlayerSequence.insert(std::make_pair(players[i], i));
+        PlayerName.insert(std::make_pair(i, players[i]));
+    }
+
+    for (std::string CurPlayer : callings)
+    {
+        // 이름이 호명된 플레이어 순위
+        int CurPlayerSequence = PlayerSequence[CurPlayer];
+
+        // 호명된 플레이어의 앞에 있는 플레이어 이름
+        std::string PrevName = PlayerName[CurPlayerSequence - 1];
+
+        // 앞에 있는 플레이어 순위
+        int PrevPlayerSequence = PlayerSequence[PrevName];
+
+        // 변경
+        int Temp = CurPlayerSequence;
+        PlayerSequence[CurPlayer] = PrevPlayerSequence;
+        PlayerSequence[PrevName] = Temp;
+        
+        // PlayerName
+        PlayerName.erase(CurPlayerSequence);
+        PlayerName.erase(PrevPlayerSequence);
+
+        PlayerName.insert(std::make_pair(PrevPlayerSequence, CurPlayer));
+        PlayerName.insert(std::make_pair(Temp, PrevName));
+    }
     
+    std::map<int, std::string>::iterator BeginIter = PlayerName.begin();
+    std::map<int, std::string>::iterator EndIter = PlayerName.end();
+
+    for (; BeginIter != EndIter; ++BeginIter)
+    {
+        std::string CurName = BeginIter->second;
+        answer.push_back(CurName);
+    }
 
     return answer;
 }
