@@ -143,14 +143,14 @@ int solution(std::vector<int> ingredient)
 
                             answer += 1;
 
-                            while (!CheckIngredientStack.empty())
+                            while (false == CheckIngredientStack.empty())
                             {
                                 CheckIngredientStack.pop();
                             }
                         }
                         else
                         {
-                            while (!CheckIngredientStack.empty())
+                            while (false == CheckIngredientStack.empty())
                             {
                                 MoveStackData(&CheckIngredientStack, &ingredientStack);
                             }
@@ -158,7 +158,7 @@ int solution(std::vector<int> ingredient)
                     }
                     else
                     {
-                        while (!CheckIngredientStack.empty())
+                        while (false == CheckIngredientStack.empty())
                         {
                             MoveStackData(&CheckIngredientStack, &ingredientStack);
                         }
@@ -166,7 +166,7 @@ int solution(std::vector<int> ingredient)
                 }
                 else
                 {
-                    while (!CheckIngredientStack.empty())
+                    while (false == CheckIngredientStack.empty())
                     {
                         MoveStackData(&CheckIngredientStack, &ingredientStack);
                     }
