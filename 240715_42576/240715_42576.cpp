@@ -31,6 +31,11 @@ std::string solution(std::vector<std::string> participant, std::vector<std::stri
     {
         std::unordered_multiset<std::string>::iterator FindIter = ParticipantSet.find(CompletionName);
 
+        if (ParticipantSet.end() == FindIter)
+        {
+            continue;
+        }
+
         ParticipantSet.erase(FindIter);
     }
 
@@ -56,4 +61,9 @@ int main()
     std::vector<std::string> Completion1 = { "eden", "kiki", "leo", "Kevin" };
 
     PrintResult(Participant1, Completion1);
+
+    std::vector<std::string> Participant2 = { "leo", "kiki", "eden", "eden", "evan" };
+    std::vector<std::string> Completion2 = { "Kevin", "eden", "kiki", "leo" };
+
+    PrintResult(Participant2, Completion2);
 }
