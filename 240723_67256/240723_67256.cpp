@@ -32,6 +32,7 @@ public:
         return abs(_Destination.x - x) + abs(_Destination.y - y);
     }
 
+private:
     int x = -1;
     int y = -1;
 };
