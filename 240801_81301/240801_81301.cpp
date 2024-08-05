@@ -22,72 +22,72 @@ s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해
 #include <map>
 #include <regex>
 
-//int solution(std::string s)
-//{
-//    std::map<std::string, std::string> Numbers;
-//    Numbers.insert(std::pair<std::string, std::string>("zero", "0"));
-//    Numbers.insert(std::pair<std::string, std::string>("one", "1"));
-//    Numbers.insert(std::pair<std::string, std::string>("two", "2"));
-//    Numbers.insert(std::pair<std::string, std::string>("three", "3"));
-//    Numbers.insert(std::pair<std::string, std::string>("four", "4"));
-//    Numbers.insert(std::pair<std::string, std::string>("five", "5"));
-//    Numbers.insert(std::pair<std::string, std::string>("six", "6"));
-//    Numbers.insert(std::pair<std::string, std::string>("seven", "7"));
-//    Numbers.insert(std::pair<std::string, std::string>("eight", "8"));
-//    Numbers.insert(std::pair<std::string, std::string>("nine", "9"));
-//
-//    int answer = 0;
-//
-//    std::string StringAnswer = "";
-//
-//    std::string CheckString = "";
-//
-//    const int StringSize = s.size();
-//    for (int i = 0; i < StringSize; ++i)
-//    {
-//        char CheckChar = s[i];
-//
-//        if ('9' >= CheckChar && '0' <= CheckChar)
-//        {
-//            StringAnswer += CheckChar;
-//            continue;
-//        }
-//
-//        CheckString += CheckChar;
-//
-//        if (3 > CheckString.size())
-//        {
-//            continue;
-//        }
-//
-//        std::map<std::string, std::string>::iterator FindIter = Numbers.find(CheckString);
-//
-//        if (Numbers.end() != FindIter)
-//        {
-//            StringAnswer += FindIter->second;
-//            CheckString = "";
-//        }
-//    }
-//
-//    answer = std::stoi(StringAnswer);
-//
-//    return answer;
-//}
-
 int solution(std::string s)
 {
-    s = std::regex_replace(s, std::regex("zero"), "0");
-    s = std::regex_replace(s, std::regex("one"), "1");
-    s = std::regex_replace(s, std::regex("two"), "2");
-    s = std::regex_replace(s, std::regex("three"), "3");
-    s = std::regex_replace(s, std::regex("four"), "4");
-    s = std::regex_replace(s, std::regex("five"), "5");
-    s = std::regex_replace(s, std::regex("six"), "6");
-    s = std::regex_replace(s, std::regex("seven"), "7");
-    s = std::regex_replace(s, std::regex("eight"), "8");
-    s = std::regex_replace(s, std::regex("nine"), "9");
-    return stoi(s);
+    std::map<std::string, std::string> Numbers;
+    Numbers.insert(std::pair<std::string, std::string>("zero", "0"));
+    Numbers.insert(std::pair<std::string, std::string>("one", "1"));
+    Numbers.insert(std::pair<std::string, std::string>("two", "2"));
+    Numbers.insert(std::pair<std::string, std::string>("three", "3"));
+    Numbers.insert(std::pair<std::string, std::string>("four", "4"));
+    Numbers.insert(std::pair<std::string, std::string>("five", "5"));
+    Numbers.insert(std::pair<std::string, std::string>("six", "6"));
+    Numbers.insert(std::pair<std::string, std::string>("seven", "7"));
+    Numbers.insert(std::pair<std::string, std::string>("eight", "8"));
+    Numbers.insert(std::pair<std::string, std::string>("nine", "9"));
+
+    int answer = 0;
+
+    std::string StringAnswer = "";
+
+    std::string CheckString = "";
+
+    const int StringSize = s.size();
+    for (int i = 0; i < StringSize; ++i)
+    {
+        char CheckChar = s[i];
+
+        if ('9' >= CheckChar && '0' <= CheckChar)
+        {
+            StringAnswer += CheckChar;
+            continue;
+        }
+
+        CheckString += CheckChar;
+
+        if (3 > CheckString.size())
+        {
+            continue;
+        }
+
+        std::map<std::string, std::string>::iterator FindIter = Numbers.find(CheckString);
+
+        if (Numbers.end() != FindIter)
+        {
+            StringAnswer += FindIter->second;
+            CheckString = "";
+        }
+    }
+
+    answer = std::stoi(StringAnswer);
+
+    return answer;
 }
+
+//int solution(std::string s)
+//{
+//    s = std::regex_replace(s, std::regex("zero"), "0");
+//    s = std::regex_replace(s, std::regex("one"), "1");
+//    s = std::regex_replace(s, std::regex("two"), "2");
+//    s = std::regex_replace(s, std::regex("three"), "3");
+//    s = std::regex_replace(s, std::regex("four"), "4");
+//    s = std::regex_replace(s, std::regex("five"), "5");
+//    s = std::regex_replace(s, std::regex("six"), "6");
+//    s = std::regex_replace(s, std::regex("seven"), "7");
+//    s = std::regex_replace(s, std::regex("eight"), "8");
+//    s = std::regex_replace(s, std::regex("nine"), "9");
+//    return stoi(s);
+//}
 
 void PrintResult(std::string s)
 {
