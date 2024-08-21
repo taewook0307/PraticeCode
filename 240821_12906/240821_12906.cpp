@@ -19,27 +19,42 @@
 #include <iostream>
 #include <vector>
 #include <iostream>
+#include <algorithm>
+
+//std::vector<int> solution(std::vector<int> arr)
+//{
+//    std::vector<int> answer;
+//    answer.reserve(arr.size());
+//
+//    for (int Num : arr)
+//    {
+//        if (false == answer.empty())
+//        {
+//            int PrevNum = answer.back();
+//
+//            if (Num != PrevNum)
+//            {
+//                answer.push_back(Num);
+//            }
+//        }
+//        else
+//        {
+//            answer.push_back(Num);
+//        }
+//    }
+//
+//    return answer;
+//}
 
 std::vector<int> solution(std::vector<int> arr)
 {
     std::vector<int> answer;
 
-    for (int Num : arr)
-    {
-        if (false == answer.empty())
-        {
-            int PrevNum = answer.back();
+    arr.erase(unique(arr.begin(), arr.end()), arr.end());
 
-            if (Num != PrevNum)
-            {
-                answer.push_back(Num);
-            }
-        }
-        else
-        {
-            answer.push_back(Num);
-        }
-    }
+    answer.reserve(arr.size());
+
+    answer = arr;
 
     return answer;
 }
