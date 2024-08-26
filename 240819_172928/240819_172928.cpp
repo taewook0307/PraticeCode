@@ -34,13 +34,19 @@
 class Index
 {
 public:
-    Index()
-        : X(0), Y(0)
-    {
+    //Index()
+    //    : X(0), Y(0)
+    //{
 
-    }
+    //}
 
-    Index(int _X, int _Y)
+    //Index(int _X, int _Y)
+    //    : X(_X), Y(_Y)
+    //{
+
+    //}
+
+    Index(int _X = 0, int _Y = 0)
         : X(_X), Y(_Y)
     {
 

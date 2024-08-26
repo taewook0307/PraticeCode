@@ -69,7 +69,9 @@ std::vector<std::vector<int>> solution(std::vector<std::vector<int>> data, std::
     int SortCondition = ReturnIndex(sort_by);
 
     // 조건에 부합하는 Data 뽑기
-    for (std::vector<int> CurData : data)
+    //for (std::vector<int> CurData : data)
+
+    for (const std::vector<int>& CurData : data)
     {
         if (val_ext > CurData[CompareCondition])
         {
@@ -78,8 +80,11 @@ std::vector<std::vector<int>> solution(std::vector<std::vector<int>> data, std::
     }
 
     // 뽑은 Data 담기
-    std::multimap<int, std::vector<int>>::iterator BeginIter = answerMap.begin();
-    std::multimap<int, std::vector<int>>::iterator EndIter = answerMap.end();
+    //std::multimap<int, std::vector<int>>::iterator BeginIter = answerMap.begin();
+    //std::multimap<int, std::vector<int>>::iterator EndIter = answerMap.end();
+
+    std::multimap<int, std::vector<int>>::const_iterator BeginIter = answerMap.begin();
+    std::multimap<int, std::vector<int>>::const_iterator EndIter = answerMap.end();
 
     for (; BeginIter != EndIter; ++BeginIter)
     {
