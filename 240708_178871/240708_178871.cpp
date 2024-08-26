@@ -109,7 +109,7 @@ std::vector<std::string> solution(std::vector<std::string> players, std::vector<
         PlayerName.insert(std::make_pair(i, players[i]));
     }
 
-    for (std::string CurPlayer : callings)
+    for (const std::string& CurPlayer : callings)
     {
         // 이름이 호명된 플레이어 순위
         int CurPlayerSequence = PlayerSequence[CurPlayer];
@@ -145,7 +145,7 @@ std::vector<std::string> solution(std::vector<std::string> players, std::vector<
     return answer;
 }
 
-void PrintResult(std::vector<std::string> players, std::vector<std::string> callings)
+void PrintResult(const std::vector<std::string>& players, const std::vector<std::string>& callings)
 {
     std::vector<std::string> Result = solution(players, callings);
 

@@ -25,7 +25,8 @@ k번 이상 신고된 유저는 게시판 이용이 정지되며, 해당 유저�
 #include <set>
 #include <unordered_map>
 
-std::vector<int> solution(std::vector<std::string> id_list, std::vector<std::string> report, int k) {
+std::vector<int> solution(std::vector<std::string> id_list, std::vector<std::string> report, int k)
+{
     const int id_listCount = id_list.size();
     std::vector<int> answer(id_listCount);
 
@@ -43,7 +44,7 @@ std::vector<int> solution(std::vector<std::string> id_list, std::vector<std::str
 
     // report 중복 내용 제거
     std::set<std::string> ReportSet;
-    for (std::string ReportContent : report)
+    for (const std::string& ReportContent : report)
     {
         ReportSet.insert(ReportContent);
     }
@@ -57,7 +58,7 @@ std::vector<int> solution(std::vector<std::string> id_list, std::vector<std::str
     // report 내용
     std::unordered_multimap<std::string, std::string> Report;
 
-    for (std::string ReportList : ReportSet)
+    for (const std::string& ReportList : ReportSet)
     {
         size_t BlankIndex = ReportList.find(' ');
 
@@ -92,7 +93,7 @@ std::vector<int> solution(std::vector<std::string> id_list, std::vector<std::str
     return answer;
 }
 
-void PrintResult(std::vector<std::string> id_list, std::vector<std::string> report, int k)
+void PrintResult(const std::vector<std::string>& id_list, const std::vector<std::string>& report, int k)
 {
     std::vector<int> Result = solution(id_list, report, k);
 

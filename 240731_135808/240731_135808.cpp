@@ -34,7 +34,7 @@ int solution(int k, int m, std::vector<int> score)
 
     std::multiset<int, std::greater<int>> SortScore;
 
-    for (int AppleScore : score)
+    for (const int AppleScore : score)
     {
         SortScore.insert(AppleScore);
     }
@@ -72,7 +72,7 @@ int solution(int k, int m, std::vector<int> score)
     return answer;
 }
 
-void PrintResult(int k, int m, std::vector<int> score)
+void PrintResult(int k, int m, const std::vector<int>& score)
 {
     int Result = solution(k, m, score);
 

@@ -130,7 +130,7 @@ std::string solution(std::string new_id) {
     return answer;
 }
 
-void PrintResult(std::string new_id)
+void PrintResult(const std::string& new_id)
 {
     std::string Result = solution(new_id);
 

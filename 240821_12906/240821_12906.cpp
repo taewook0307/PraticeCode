@@ -59,7 +59,7 @@ std::vector<int> solution(std::vector<int> arr)
     return answer;
 }
 
-void PrintResult(std::vector<int> arr)
+void PrintResult(const std::vector<int>& arr)
 {
     std::vector<int> Result = solution(arr);
 

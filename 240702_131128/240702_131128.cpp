@@ -202,7 +202,7 @@ std::string solution(std::string X, std::string Y) {
     return answer;
 }
 
-void PrintResult(std::string X, std::string Y)
+void PrintResult(const std::string& X, const std::string& Y)
 {
     std::string Result = solution(X, Y);
     std::cout << Result << std::endl;

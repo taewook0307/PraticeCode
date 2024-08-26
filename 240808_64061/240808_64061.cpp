@@ -71,7 +71,7 @@ int solution(std::vector<std::vector<int>> board, std::vector<int> moves) {
     return answer;
 }
 
-void PrintResult(std::vector<std::vector<int>> board, std::vector<int> moves)
+void PrintResult(const std::vector<std::vector<int>>& board, const std::vector<int>& moves)
 {
     int Result = solution(board, moves);
 

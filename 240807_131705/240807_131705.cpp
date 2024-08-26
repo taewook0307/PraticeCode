@@ -44,7 +44,7 @@ int solution(std::vector<int> number)
     return answer;
 }
 
-void PrintResult(std::vector<int> number)
+void PrintResult(const std::vector<int>& number)
 {
     int Result = solution(number);
 

@@ -89,7 +89,7 @@ int solution(std::string s)
 //    return stoi(s);
 //}
 
-void PrintResult(std::string s)
+void PrintResult(const std::string& s)
 {
     int Result = solution(s);
 

@@ -21,13 +21,14 @@
 #include <string>
 #include <vector>
 
-int solution(std::vector<std::vector<int>> sizes) {
+int solution(std::vector<std::vector<int>> sizes)
+{
     int answer = 0;
 
     int XSize = 0;
     int YSize = 0;
 
-    for (std::vector<int> BusinessCard : sizes)
+    for (const std::vector<int>& BusinessCard : sizes)
     {
         int LongSize = BusinessCard[0] < BusinessCard[1] ? BusinessCard[1] : BusinessCard[0];
         int ShortSize = BusinessCard[0] < BusinessCard[1] ? BusinessCard[0] : BusinessCard[1];
@@ -41,7 +42,7 @@ int solution(std::vector<std::vector<int>> sizes) {
     return answer;
 }
 
-void PrintResult(std::vector<std::vector<int>> sizes)
+void PrintResult(const std::vector<std::vector<int>>& sizes)
 {
     int Result = solution(sizes);
 

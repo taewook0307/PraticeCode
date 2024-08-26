@@ -119,7 +119,7 @@ int solution(std::vector<int> ingredient)
     std::stack<int> ingredientStack;
     std::stack<int> CheckIngredientStack;
 
-    for (int CurIngredient : ingredient)
+    for (const int CurIngredient : ingredient)
     {
         ingredientStack.push(CurIngredient);
 
@@ -178,7 +178,7 @@ int solution(std::vector<int> ingredient)
     return answer;
 }
 
-void PrintResult(std::vector<int> ingredient)
+void PrintResult(const std::vector<int>& ingredient)
 {
     int Result = solution(ingredient);
 

@@ -19,7 +19,8 @@
 #include <string>
 #include <vector>
 
-int solution(int a, int b, int n) {
+int solution(int a, int b, int n)
+{
     int answer = 0;
 
     int AllCokeCount = n;

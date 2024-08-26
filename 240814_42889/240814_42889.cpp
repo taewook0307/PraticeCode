@@ -46,7 +46,7 @@ std::vector<int> solution(int N, std::vector<int> stages) {
     // 실패횟수
     std::vector<int> FailureCount(N);
 
-    for (int StopStage : stages)
+    for (const int StopStage : stages)
     {
         if (N < StopStage)
         {
@@ -103,7 +103,7 @@ std::vector<int> solution(int N, std::vector<int> stages) {
 
     sort(FailureRate.begin(), FailureRate.end(), Compare);
 
-    for (std::pair<float, int> CurIter : FailureRate)
+    for (const std::pair<float, int>& CurIter : FailureRate)
     {
         answer.push_back(CurIter.second);
     }
@@ -111,7 +111,7 @@ std::vector<int> solution(int N, std::vector<int> stages) {
     return answer;
 }
 
-void PrintResult(int N, std::vector<int> stages)
+void PrintResult(int N, const std::vector<int>& stages)
 {
     std::vector<int> Result = solution(N, stages);
 

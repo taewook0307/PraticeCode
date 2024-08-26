@@ -17,17 +17,18 @@
 #include <vector>
 #include <unordered_set>
 
-std::string solution(std::vector<std::string> participant, std::vector<std::string> completion) {
+std::string solution(std::vector<std::string> participant, std::vector<std::string> completion)
+{
     std::string answer = "";
 
     std::unordered_multiset<std::string> ParticipantSet;
 
-    for (std::string ParticipantName : participant)
+    for (const std::string& ParticipantName : participant)
     {
         ParticipantSet.insert(ParticipantName);
     }
 
-    for (std::string CompletionName : completion)
+    for (const std::string& CompletionName : completion)
     {
         std::unordered_multiset<std::string>::iterator FindIter = ParticipantSet.find(CompletionName);
 
@@ -44,7 +45,7 @@ std::string solution(std::vector<std::string> participant, std::vector<std::stri
     return answer;
 }
 
-void PrintResult(std::vector<std::string> participant, std::vector<std::string> completion)
+void PrintResult(const std::vector<std::string>& participant, const std::vector<std::string>& completion)
 {
     std::string Result = solution(participant, completion);
     std::cout << "Result : " << Result << std::endl;

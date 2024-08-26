@@ -63,7 +63,7 @@ std::string solution(std::string s, std::string skip, int index) {
     return answer;
 }
 
-void PrintResult(std::string s, std::string skip, int index)
+void PrintResult(const std::string& s, const std::string& skip, int index)
 {
     std::string Result = solution(s, skip, index);
 

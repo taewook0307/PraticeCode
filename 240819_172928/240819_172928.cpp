@@ -122,7 +122,7 @@ std::vector<int> solution(std::vector<std::string> park, std::vector<std::string
     }
 
     // MoveData
-    for (std::string Move : routes)
+    for (const std::string& Move : routes)
     {
         std::stringstream ss(Move);
         char MoveDir;
@@ -241,7 +241,7 @@ std::vector<int> solution(std::vector<std::string> park, std::vector<std::string
     return answer;
 }
 
-void PrintResult(std::vector<std::string> park, std::vector<std::string> routes)
+void PrintResult(const std::vector<std::string>& park, const std::vector<std::string>& routes)
 {
     std::vector<int> answer = solution(park, routes);
 

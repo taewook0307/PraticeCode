@@ -94,7 +94,7 @@ std::vector<std::vector<int>> solution(std::vector<std::vector<int>> data, std::
     return answer;
 }
 
-void PrintResult(std::vector<std::vector<int>> data, std::string ext, int val_ext, std::string sort_by)
+void PrintResult(const std::vector<std::vector<int>>& data, const std::string& ext, int val_ext, const std::string& sort_by)
 {
     std::vector<std::vector<int>> answer = solution(data, ext, val_ext, sort_by);
 

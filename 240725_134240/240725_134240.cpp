@@ -55,7 +55,7 @@ std::string solution(std::vector<int> food)
     return answer;
 }
 
-void PrintResult(std::vector<int> food)
+void PrintResult(const std::vector<int>& food)
 {
     std::string Result = solution(food);
 

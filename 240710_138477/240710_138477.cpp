@@ -69,7 +69,7 @@ std::vector<int> solution(int k, std::vector<int> score) {
     return answer;
 }
 
-void PrintResult(int k, std::vector<int> score)
+void PrintResult(int k, const std::vector<int>& score)
 {
     std::vector<int> Result = solution(k, score);
 

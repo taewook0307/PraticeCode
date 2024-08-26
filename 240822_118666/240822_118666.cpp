@@ -102,7 +102,7 @@ std::string solution(std::vector<std::string> survey, std::vector<int> choices)
     return answer;
 }
 
-void PrintResult(std::vector<std::string> survey, std::vector<int> choices)
+void PrintResult(const std::vector<std::string>& survey, const std::vector<int>& choices)
 {
     std::string Result = solution(survey, choices);
 

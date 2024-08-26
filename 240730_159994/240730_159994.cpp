@@ -36,12 +36,12 @@ std::string solution(std::vector<std::string> cards1, std::vector<std::string> c
     std::queue<std::string> Cards1Queue;
     std::queue<std::string> Cards2Queue;
 
-    for (std::string CurString : cards1)
+    for (const std::string& CurString : cards1)
     {
         Cards1Queue.push(CurString);
     }
 
-    for (std::string CurString : cards2)
+    for (const std::string& CurString : cards2)
     {
         Cards2Queue.push(CurString);
     }
@@ -70,7 +70,7 @@ std::string solution(std::vector<std::string> cards1, std::vector<std::string> c
     return answer;
 }
 
-void PrintResult(std::vector<std::string> cards1, std::vector<std::string> cards2, std::vector<std::string> goal)
+void PrintResult(const std::vector<std::string>& cards1, const std::vector<std::string>& cards2, const std::vector<std::string>& goal)
 {
     std::string Result = solution(cards1, cards2, goal);
 

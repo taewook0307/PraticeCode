@@ -26,7 +26,7 @@ using namespace std;
 vector<int> solution(vector<int> array, vector<vector<int>> commands) {
     vector<int> answer;
 
-    for (vector<int> Command : commands)
+    for (const vector<int>& Command : commands)
     {
         vector<int> SliceArray;
 

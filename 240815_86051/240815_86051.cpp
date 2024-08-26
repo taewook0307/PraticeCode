@@ -50,7 +50,7 @@ int solution(std::vector<int> numbers)
     return answer;
 }
 
-void PrintResult(std::vector<int> numbers)
+void PrintResult(const std::vector<int>& numbers)
 {
     int Result = solution(numbers);
     std::cout << "Result : " << Result << std::endl;

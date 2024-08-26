@@ -37,7 +37,8 @@ private:
     int y = -1;
 };
 
-std::string solution(std::vector<int> numbers, std::string hand) {
+std::string solution(std::vector<int> numbers, std::string hand)
+{
     std::string answer = "";
 
     std::vector<Location> numberLocation;
@@ -55,7 +56,7 @@ std::string solution(std::vector<int> numbers, std::string hand) {
     Location LeftHandLocation = Location(3, 0);         // 왼손 시작 위치
     Location RightHandLocation = Location(3, 2);        // 오른손 시작 위치
 
-    for (int number : numbers)
+    for (const int number : numbers)
     {
         if (1 == number
             || 4 == number
@@ -109,7 +110,7 @@ std::string solution(std::vector<int> numbers, std::string hand) {
     return answer;
 }
 
-void PrintResult(std::vector<int> numbers, std::string hand)
+void PrintResult(const std::vector<int>& numbers, const std::string& hand)
 {
     std::string Result = solution(numbers, hand);
 

@@ -19,7 +19,8 @@ solution을 완성하세요.
 #include <string>
 #include <vector>
 
-std::string solution(int a, int b) {
+std::string solution(int a, int b)
+{
     std::string answer = "";
 
     std::vector<std::string> Week = { "THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED" };

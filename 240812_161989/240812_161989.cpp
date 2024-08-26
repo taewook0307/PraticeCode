@@ -40,7 +40,7 @@ int solution(int n, int m, std::vector<int> section)
 
     int PrevSection = 0;
 
-    for (int CurSection : section)
+    for (const int CurSection : section)
     {
         // 제일 처음 들어온 구역
         if (0 == PrevSection)
@@ -63,7 +63,7 @@ int solution(int n, int m, std::vector<int> section)
     return answer;
 }
 
-void PrintResult(int n, int m, std::vector<int> section)
+void PrintResult(int n, int m, const std::vector<int>& section)
 {
     int Result = solution(n, m, section);
     std::cout << "Result : " << Result << std::endl;

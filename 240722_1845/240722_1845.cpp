@@ -27,7 +27,7 @@ int solution(std::vector<int> nums)
 
     std::set<int> MonsterType;
 
-    for (int CurNum : nums)
+    for (const int CurNum : nums)
     {
         MonsterType.insert(CurNum);
     }
@@ -39,7 +39,7 @@ int solution(std::vector<int> nums)
     return answer;
 }
 
-void PrintResult(std::vector<int> nums)
+void PrintResult(const std::vector<int>& nums)
 {
     int Result = solution(nums);
     std::cout << "Result : " << Result << std::endl;

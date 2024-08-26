@@ -12,7 +12,8 @@
 #include <iostream>
 #include <string>
 
-std::string solution(int n) {
+std::string solution(int n)
+{
     std::string answer = "";
 
     answer.reserve(n);

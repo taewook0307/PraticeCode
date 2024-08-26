@@ -20,7 +20,8 @@
 
 #include <iostream>
 
-int solution(int num) {
+int solution(int num)
+{
     int answer = 0;
 
     long long InputNum = static_cast<long long>(num);
