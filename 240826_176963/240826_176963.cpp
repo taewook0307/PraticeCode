@@ -48,7 +48,16 @@ std::vector<int> solution(std::vector<std::string> name, std::vector<int> yearni
 
         for (int i = 0; i < CurPhotoPeople; ++i)
         {
-            int PersonScore = ScoreMap[CurPhoto[i]];
+            std::unordered_map<std::string, int>::const_iterator FindIter = ScoreMap.find(CurPhoto[i]);
+
+            if (FindIter == ScoreMap.end())
+            {
+                continue;
+            }
+
+            int PersonScore = FindIter->second;
+
+            //int PersonScore = ScoreMap[CurPhoto[i]];
 
             Score += PersonScore;
         }
