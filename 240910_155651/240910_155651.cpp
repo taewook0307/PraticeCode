@@ -79,7 +79,7 @@ int solution(std::vector<std::vector<std::string>> book_time)
     const int BookingCount = static_cast<int>(book_time.size());
     sort(book_time.begin(), book_time.end());
 
-    std::vector<std::pair<std::string, std::string>> Rooms;
+    std::vector<std::string> Rooms;
     Rooms.reserve(BookingCount);
 
     for (int i = 0; i < BookingCount; ++i)
@@ -91,10 +91,10 @@ int solution(std::vector<std::vector<std::string>> book_time)
         const int RoomCount = static_cast<int>(Rooms.size());
         for (int i = 0; i < RoomCount; ++i)
         {
-            if (Rooms[i].second <= CheckBooking[0])
+            if (Rooms[i] <= CheckBooking[0])
             {
                 Time CleanEndTime = (Time(CheckBooking[1]) + 10);
-                Rooms[i] = std::make_pair(CheckBooking[0], CleanEndTime.ToString());
+                Rooms[i] = CleanEndTime.ToString();
                 CheckIn = true;
                 break;
             }
@@ -103,7 +103,7 @@ int solution(std::vector<std::vector<std::string>> book_time)
         if (false == CheckIn)
         {
             Time CleanEndTime = (Time(CheckBooking[1]) + 10);
-            Rooms.push_back(std::make_pair(CheckBooking[0], CleanEndTime.ToString()));
+            Rooms.push_back(CleanEndTime.ToString());
         }
     }
 
