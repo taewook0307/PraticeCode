@@ -77,8 +77,10 @@ int solution(std::vector<std::vector<std::string>> book_time)
     int answer = 0;
 
     const int BookingCount = static_cast<int>(book_time.size());
+    // 예약 시간이 빠른 순서대로 정렬
     sort(book_time.begin(), book_time.end());
 
+    // 방 대여 후 청소 종료 시간 저장용 vector
     std::vector<std::string> Rooms;
     Rooms.reserve(BookingCount);
 
@@ -88,9 +90,11 @@ int solution(std::vector<std::vector<std::string>> book_time)
 
         bool CheckIn = false;
 
+        // 있는 방 중 정리가 끝난 방을 체크
         const int RoomCount = static_cast<int>(Rooms.size());
         for (int i = 0; i < RoomCount; ++i)
         {
+            // 정리 끝난 방이 존재하면 청소 종료시간을 구한 뒤 값 변경
             if (Rooms[i] <= CheckBooking[0])
             {
                 Time CleanEndTime = (Time(CheckBooking[1]) + 10);
@@ -100,6 +104,7 @@ int solution(std::vector<std::vector<std::string>> book_time)
             }
         }
 
+        // 대실 못 했을 경우 새로운 방 할당
         if (false == CheckIn)
         {
             Time CleanEndTime = (Time(CheckBooking[1]) + 10);

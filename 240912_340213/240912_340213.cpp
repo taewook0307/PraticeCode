@@ -112,6 +112,7 @@ std::string solution(std::string video_len, std::string pos, std::string op_star
 {
     std::string answer = pos;
 
+    // 오프닝 건너뛰기
     if (op_start <= answer && op_end >= answer)
     {
         answer = op_end;
@@ -121,10 +122,12 @@ std::string solution(std::string video_len, std::string pos, std::string op_star
 
     for (const std::string& Command : commands)
     {
+        // 10초 전으로
         if ("prev" == Command)
         {
             CurTime.Prev();
         }
+        // 10초 후로
         else if ("next" == Command)
         {
             CurTime.Next();
@@ -132,11 +135,13 @@ std::string solution(std::string video_len, std::string pos, std::string op_star
 
         std::string CurTimeString = CurTime.ToString();
 
+        // 10초 후로 돌렸을 때 동영상 길이 초과 시
         if (video_len < CurTimeString)
         {
             CurTime.Set(video_len);
         }
 
+        // 시간 변경 후 오프닝 부분일 경우
         if (op_start <= CurTimeString && op_end >= CurTimeString)
         {
             CurTime.Set(op_end);

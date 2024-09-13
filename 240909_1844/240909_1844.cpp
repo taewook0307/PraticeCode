@@ -42,6 +42,7 @@ int solution(std::vector<std::vector<int> > maps)
     const int RowCount = static_cast<int>(maps.size());
     const int ColumnCount = static_cast<int>(maps[0].size());
 
+    // 인덱스에 더해질 값 : 왼쪽 오른쪽 위 아래
     int IndexX[4] = { -1, 1, 0, 0 };
     int IndexY[4] = { 0, 0, -1, 1 };
 
@@ -52,7 +53,9 @@ int solution(std::vector<std::vector<int> > maps)
     Visit[CurNode.X][CurNode.Y] = true;
     Distance[CurNode.X][CurNode.Y] = 1;
 
+    // 탐색용 큐
     std::queue<Node> Search;
+    // 초기값 push
     Search.push(CurNode);
 
     while (false == Search.empty())
@@ -60,6 +63,7 @@ int solution(std::vector<std::vector<int> > maps)
         CurNode = Search.front();
         Search.pop();
 
+        // 목적지를 pop한 경우
         if (RowCount - 1 == CurNode.X && ColumnCount - 1 == CurNode.Y)
         {
             answer = Distance[CurNode.X][CurNode.Y];
@@ -70,6 +74,7 @@ int solution(std::vector<std::vector<int> > maps)
             int NextNodeX = CurNode.X + IndexX[i];
             int NextNodeY = CurNode.Y + IndexY[i];
 
+            // 맵 밖인지 확인
             if (0 > NextNodeX
                 || 0 > NextNodeY
                 || RowCount <= NextNodeX
@@ -78,22 +83,26 @@ int solution(std::vector<std::vector<int> > maps)
                 continue;
             }
 
+            // 벽인지 확인
             if (0 == maps[NextNodeX][NextNodeY])
             {
                 continue;
             }
 
+            // 이미 지나온 길인지 확인
             if (true == Visit[NextNodeX][NextNodeY])
             {
                 continue;
             }
 
+            // 다음에 갈 수 있는 노드들을 큐에 push
             Search.push(Node(NextNodeX, NextNodeY));
             Visit[NextNodeX][NextNodeY] = true;
             Distance[NextNodeX][NextNodeY] = Distance[CurNode.X][CurNode.Y] + 1;
         }
     }
 
+    // 목적지에 도달하지 못했을 경우
     if (false == Visit[RowCount - 1][ColumnCount - 1])
     {
         return -1;
