@@ -116,51 +116,115 @@ bool IsOverlap(const Width& _X, const Width& _Y)
 //    return answer;
 //}
 
-bool Compare(const std::vector<int>& _Left, const std::vector<int>& _Right)
-{
-    if (_Left[0] == _Right[0])
-    {
-        return _Left[1] > _Right[1];
-    }
+//bool Compare(const std::vector<int>& _Left, const std::vector<int>& _Right)
+//{
+//    if (_Left[0] == _Right[0])
+//    {
+//        return _Left[1] > _Right[1];
+//    }
+//
+//    return _Left[0] > _Right[0];
+//}
 
-    return _Left[0] > _Right[0];
-}
+//int solution(std::vector<std::vector<int>> targets)
+//{
+//    int answer = 1;
+//
+//    // 오름차순으로 정렬
+//    sort(targets.begin(), targets.end(), Compare);
+//    int MissileCount = static_cast<int>(targets.size());
+//
+//    // 첫번째 미사일을 체크용으로 선언
+//    Width CheckMissile = Width(targets[0][0], targets[0][1]);
+//
+//    // 두번째 부터 조사
+//    for (int i = 1; i < MissileCount; ++i)
+//    {
+//        Width CurMissile = Width(targets[i][0], targets[i][1]);
+//
+//        // 겹칠 경우
+//        if (true == IsOverlap(CheckMissile, CurMissile))
+//        {
+//            CheckMissile = CheckMissile.Left > CurMissile.Left ? CheckMissile : CurMissile;
+//        }
+//        // 안 겹칠 경우
+//        else
+//        {
+//            CheckMissile = CurMissile;
+//            ++answer;
+//        }
+//    }
+//
+//    return answer;
+//}
+
+//int solution(std::vector<std::vector<int>> targets)
+//{
+//    sort(targets.begin(), targets.end(), Compare);
+//    int MissileCount = static_cast<int>(targets.size());
+//
+//    std::vector<Width> InterceptCount;
+//
+//    for (int i = 0; i < MissileCount; ++i)
+//    {
+//        Width CurMissile = Width(targets[i][0], targets[i][1]);
+//        bool IsIntercept = false;
+//
+//        const int InterceptSize = static_cast<int>(InterceptCount.size());
+//
+//        for (int i = 0; i < InterceptSize; ++i)
+//        {
+//            if (true == IsOverlap(InterceptCount[i], CurMissile))
+//            {
+//                InterceptCount[i] = InterceptCount[i].Left > CurMissile.Left ? InterceptCount[i] : CurMissile;
+//                IsIntercept = true;
+//            }
+//        }
+//
+//        if (false == IsIntercept)
+//        {
+//            InterceptCount.push_back(CurMissile);
+//        }
+//    }
+//
+//    return InterceptCount.size();
+//}
 
 int solution(std::vector<std::vector<int>> targets)
 {
-    int answer = 1;
-
-    // 오름차순으로 정렬
-    sort(targets.begin(), targets.end(), Compare);
+    sort(targets.begin(), targets.end());
     int MissileCount = static_cast<int>(targets.size());
 
-    // 첫번째 미사일을 체크용으로 선언
-    Width CheckMissile = Width(targets[0][0], targets[0][1]);
+    std::vector<Width> InterceptCount;
 
-    // 두번째 부터 조사
-    for (int i = 1; i < MissileCount; ++i)
+    for (int i = 0; i < MissileCount; ++i)
     {
         Width CurMissile = Width(targets[i][0], targets[i][1]);
+        bool IsIntercept = false;
 
-        // 겹칠 경우
-        if (true == IsOverlap(CheckMissile, CurMissile))
+        const int InterceptSize = static_cast<int>(InterceptCount.size());
+
+        for (int i = 0; i < InterceptSize; ++i)
         {
-            CheckMissile = CheckMissile.Left > CurMissile.Left ? CheckMissile : CurMissile;
+            if (true == IsOverlap(InterceptCount[i], CurMissile))
+            {
+                InterceptCount[i] = InterceptCount[i].Right < CurMissile.Right ? InterceptCount[i] : CurMissile;
+                IsIntercept = true;
+            }
         }
-        // 안 겹칠 경우
-        else
+
+        if (false == IsIntercept)
         {
-            CheckMissile = CurMissile;
-            ++answer;
+            InterceptCount.push_back(CurMissile);
         }
     }
 
-    return answer;
+    return InterceptCount.size();
 }
 
 int main()
 {
-    std::vector<std::vector<int>> Targets0 = { { 1, 5 }, { 2, 6 }, { 3, 7 }, { 5, 17 } };
+    std::vector<std::vector<int>> Targets0 = { { 4, 5 }, { 4, 8 }, { 10, 14 }, { 11, 13 }, { 5, 12 }, { 3, 7 }, { 1, 4 } };
     int Result = solution(Targets0);
 
     std::cout << Result << std::endl;
