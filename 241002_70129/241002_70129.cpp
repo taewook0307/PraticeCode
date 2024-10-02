@@ -20,7 +20,7 @@ s가 "1"이 될 때까지 계속해서 s에 이진 변환을 가했을 때,
 #include <iostream>
 #include <string>
 #include <vector>
-#include <deque>
+#include <algorithm>
 
 std::vector<int> solution(std::string s)
 {
@@ -33,23 +33,10 @@ std::vector<int> solution(std::string s)
 
     while (ChangeString != "1")
     {
-        std::string RemoveString = "";
+        size_t Length = count(ChangeString.begin(), ChangeString.end(), '1');
+        RemoveCount += ChangeString.size() - Length;
 
-        for (char CurChar : ChangeString)
-        {
-            if ('0' == CurChar)
-            {
-                ++RemoveCount;
-            }
-            else
-            {
-                RemoveString += '1';
-            }
-        }
-
-        size_t Length = RemoveString.size();
-
-        std::deque<char> BinaryLength;
+        std::string BinaryLength = "";
 
         while (0 != Length)
         {
@@ -64,20 +51,7 @@ std::vector<int> solution(std::string s)
             Length /= 2;
         }
 
-        std::string BinaryLengthString = "";
-
-        while(false == BinaryLength.empty())
-        {
-            BinaryLengthString += BinaryLength.back();
-            BinaryLength.pop_back();
-        }
-
-        while (BinaryLengthString[0] == '0')
-        {
-            BinaryLengthString.erase(BinaryLengthString.begin());
-        }
-
-        ChangeString = BinaryLengthString;
+        ChangeString = BinaryLength;
         ++Count;
     }
 
