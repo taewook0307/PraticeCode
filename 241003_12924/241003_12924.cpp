@@ -65,6 +65,8 @@ int solution(int n)
         }
     );
 
+    // n이 홀수이면 본인 제외하고 2추가하기 때문에 굳이 빼주고 더해줄 필요 X
+
     return n == 1 ? 1 : answer;
 }
 
