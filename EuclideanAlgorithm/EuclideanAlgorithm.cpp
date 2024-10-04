@@ -37,6 +37,21 @@ int Enclidean(int _Num1, int _Num2)
     }
 }
 
+int EnclideanRecursive(int _Num1, int _Num2)
+{
+    int Dividend = _Num1 > _Num2 ? _Num1 : _Num2;
+    int Divisor = _Num1 > _Num2 ? _Num2 : _Num1;
+
+    if (0 == Dividend % Divisor)
+    {
+        return _Num2;
+    }
+    else
+    {
+        return EnclideanRecursive(Divisor, Dividend % Divisor);
+    }
+}
+
 int main()
 {
     std::cout << Enclidean(1071, 1029) << std::endl;    // 21
@@ -46,4 +61,13 @@ int main()
     std::cout << Enclidean(100, 25) << std::endl;       // 25
     std::cout << Enclidean(81, 27) << std::endl;        // 27
     std::cout << Enclidean(7, 5) << std::endl;          // 1
+
+    std::cout << std::endl << "Recursive ----------------" << std::endl;
+    std::cout << EnclideanRecursive(1071, 1029) << std::endl;    // 21
+    std::cout << EnclideanRecursive(48, 18) << std::endl;        // 6
+    std::cout << EnclideanRecursive(56, 98) << std::endl;        // 14
+    std::cout << EnclideanRecursive(101, 10) << std::endl;       // 1
+    std::cout << EnclideanRecursive(100, 25) << std::endl;       // 25
+    std::cout << EnclideanRecursive(81, 27) << std::endl;        // 27
+    std::cout << EnclideanRecursive(7, 5) << std::endl;          // 1
 }
