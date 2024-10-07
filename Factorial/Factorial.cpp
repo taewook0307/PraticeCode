@@ -10,7 +10,7 @@ int Factorial(int _Value)
 		return 1;
 	}
 
-	return _Value + Factorial(_Value - 1);
+	return _Value * Factorial(_Value - 1);
 }
 
 int main()
