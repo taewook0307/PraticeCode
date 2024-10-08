@@ -45,8 +45,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stack>
 #include <algorithm>
+
+#define ENDTIME 1439
 
 class CalculateFee
 {
@@ -77,14 +78,41 @@ private:
     int OverPay;
 };
 
-struct Time
+int TimeToInt(std::string _Time)
 {
-    Time(std::string& _Time)
+    int Seconds = stoi(_Time.substr(0, 2)) * 60 + stoi(_Time.substr(3, 2));
+    return Seconds;
+}
+
+class ParkingRecord
+{
+public:
+    ParkingRecord(const std::string& _RecordData)
     {
-        Seconds = stoi(_Time.substr(0, 2)) * 60 + stoi(_Time.substr(3, 2));
+        CarNum = _RecordData.substr(6, 4);
+        Time = TimeToInt(_RecordData.substr(0, 5));
+        CarIn = _RecordData.back() == 'N' ? true : false;
     }
 
-    int Seconds = 0;
+    std::string& GetCarNum()
+    {
+        return CarNum;
+    }
+
+    int GetTime() const
+    {
+        return Time;
+    }
+
+    bool IsIn() const
+    {
+        return CarIn;
+    }
+
+private:
+    std::string CarNum = "";
+    int Time = -1;
+    bool CarIn = false;
 };
 
 bool Compare(std::string& _Left, std::string& _Right)
@@ -103,123 +131,102 @@ bool Compare(std::string& _Left, std::string& _Right)
 std::vector<int> solution(std::vector<int> fees, std::vector<std::string> records)
 {
     std::vector<int> answer;
+    size_t RecordCount = records.size();
+    answer.reserve(RecordCount / 2);
 
     CalculateFee ParkingFeeCalculator = CalculateFee(fees[0], fees[1], fees[2], fees[3]);
 
-    size_t RecordCount = records.size();
-    
-    if (RecordCount == 1)
+    if (1 == RecordCount)
     {
-        std::string EndTime = "23:59";
-        Time OutTime = Time(EndTime);
-
-        std::string PrevTimeString = records[0].substr(0, 5);
-        Time PrevTime = Time(PrevTimeString);
-
-        int ParkingTime = (OutTime.Seconds - PrevTime.Seconds);
-
-        answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
-
+        int InTime = TimeToInt(records[0].substr(0, 5));
+        int ParkingTime = ENDTIME - InTime;
+        int Fee = ParkingFeeCalculator.GetFee(ParkingTime);
+        answer.push_back(Fee);
         return answer;
     }
 
     sort(records.begin(), records.end(), Compare);
-    
-    std::string PrevTimeString = records[0].substr(0, 5);
-    Time PrevTime = Time(PrevTimeString);
-    std::string PrevCarNum = records[0].substr(6, 4);
-    bool IsIn = records[0].back() == 'N' ? true : false;
 
-    int ParkingTime = 0;;
+    ParkingRecord PrevData = ParkingRecord(records[0]);
+
+    int ParkingTime = 0;
 
     for (size_t i = 1; i < RecordCount; ++i)
     {
-        std::string CarNum = records[i].substr(6, 4);
-
-        if (i == RecordCount - 1)
+        ParkingRecord CurData = ParkingRecord(records[i]);
+        
+        // 이전 차량과 다른 차량의 기록일 경우
+        if (PrevData.GetCarNum() != CurData.GetCarNum())
         {
-            bool CurIn = records[i].back() == 'N' ? true : false;
-
-            if (true == CurIn)
+            // 이전 차량 마지막 기록이 입차 기록일 경우
+            if (true == PrevData.IsIn())
             {
-                std::string EndTime = "23:59";
-                Time OutTime = Time(EndTime);
-
-                std::string CurTimeString = records[i].substr(0, 5);
-                Time CurTime = Time(CurTimeString);
-
-                ParkingTime += (OutTime.Seconds - CurTime.Seconds);
-
-                answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
-            }
-            else
-            {
-                std::string OutTimeString = records[i].substr(0, 5);
-                Time OutTime = Time(OutTimeString);
-
-                ParkingTime += (OutTime.Seconds - PrevTime.Seconds);
-
-                answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
-            }
-        }
-        else if (CarNum != PrevCarNum)
-        {
-            // 23:59분까지 있을경우
-            if (true == IsIn)
-            {
-                std::string EndTime = "23:59";
-                Time OutTime = Time(EndTime);
-
-                ParkingTime += (OutTime.Seconds - PrevTime.Seconds);
+                int SubTime = ENDTIME - PrevData.GetTime();
+                ParkingTime += SubTime;
 
                 answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
                 ParkingTime = 0;
-                PrevCarNum = CarNum;
+                PrevData = CurData;
 
-                std::string CurInTimeString = records[i].substr(0, 5);
-                PrevTime = Time(CurInTimeString);
+                // 마지막 기록일 경우
+                if (i == RecordCount - 1)
+                {
+                    int SubTime = ENDTIME - CurData.GetTime();
+                    ParkingTime += SubTime;
 
-                IsIn = records[i].back() == 'N' ? true : false;
+                    answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
+                }
             }
-            // 그 전 차량의 주차비 계산 후 push
+            // 이전 차량 마지막 기록이 출차 기록일 경우
             else
             {
                 answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
                 ParkingTime = 0;
-                PrevCarNum = CarNum;
+                PrevData = CurData;
 
-                std::string CurTimeString = records[i].substr(0, 5);
-                PrevTime = Time(CurTimeString);
-                IsIn = records[i].back() == 'N' ? true : false;
+                // 마지막 기록일 경우
+                if (i == RecordCount - 1)
+                {
+                    int SubTime = ENDTIME - CurData.GetTime();
+                    ParkingTime += SubTime;
+
+                    answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
+                }
             }
         }
         else
         {
-            bool CurIn = records[i].back() == 'N' ? true : false;
-
-            // 입차 후 출차
-            if (true == IsIn && false == CurIn)
+            // 이전 차의 출차 기록일 경우
+            if (CurData.IsIn() == false)
             {
-                std::string OutTimeString = records[i].substr(0, 5);
-                Time OutTime = Time(OutTimeString);
+                int SubTime = CurData.GetTime() - PrevData.GetTime();
+                ParkingTime += SubTime;
 
-                ParkingTime += (OutTime.Seconds - PrevTime.Seconds);
+                PrevData = CurData;
 
-                PrevTime = OutTime;
-                IsIn = CurIn;
+                // 마지막 기록일 경우
+                if (i == RecordCount - 1)
+                {
+                    answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
+                }
             }
-            // 한번 출차한 차가 재입차
-            else if (false == IsIn && true == CurIn)
+            // 이전 차의 입차 기록일 경우
+            else
             {
-                std::string InTimeString = records[i].substr(0, 5);
-                Time InTime = Time(InTimeString);
+                PrevData = CurData;
 
-                IsIn = CurIn;
-                PrevTime = InTime;
+                // 마지막 기록일 경우
+                if (i == RecordCount - 1)
+                {
+                    int SubTime = ENDTIME - CurData.GetTime();
+                    ParkingTime += SubTime;
+
+                    answer.push_back(ParkingFeeCalculator.GetFee(ParkingTime));
+                }
             }
         }
     }
-
+    
     return answer;
 }
 
