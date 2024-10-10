@@ -147,8 +147,9 @@ int solution(int n, long long l, long long r)
     
     for (long long i = l; i <= r; ++i)
     {
-        bool flag = true;
+        bool Flag = true;
 
+        // 현재 인덱스를 5로 나눴을 때 3이면 가운데 부분
         if (i % 5 == 3)
         {
             continue;
@@ -156,29 +157,34 @@ int solution(int n, long long l, long long r)
 
         long long Area = i;
 
-        while (1) {
+        while (1)
+        {
+            // 5, 10 등 5의 배수는 5로 나눈 몫이 해당 구역 ex) 5번 인덱스는 5 / 5 = 1 => 1번구역
             if (Area % 5 == 0)
             {
                 Area = Area / 5;
             }
+            // 그 외 숫자는 5로 나눈 몫에 1을 더한 수가 해당 구역 ex) 4번 인덱스는 4 / 5 = 0, 0 + 1 => 1번구역
             else
             {
                 Area = (Area / 5) + 1;
             }
 
+            // 현재 인덱스가 있는 구역이 0이 연속되는 3번 구역일 경우 현재 인덱스의 값은 0
             if (Area % 5 == 3)
             {
-                flag = 0;
+                Flag = 0;
                 break;
             }
+            // 현제 인덱스 구역이 5보다 작고 위의 조건 중 맞는게 없는 경우 현재 인덱스 값은 1
             else if (Area <= 5)
             {
-                flag = 1;
+                Flag = 1;
                 break;
             }
         }
 
-        if (true == flag)
+        if (true == Flag)
         {
             ++answer;
         }
