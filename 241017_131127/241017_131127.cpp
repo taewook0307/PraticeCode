@@ -24,6 +24,8 @@ XYZ 마트에서 14일간 회원을 대상으로 할인하는 제품이 날짜 �
 #include <vector>
 #include <algorithm>
 
+// 기존에 구해놓은 갯수에서 첫번째 부분을 제외하고 뒷부분을 추가하는 식으로 코드 계산량 줄이기 가능
+
 int solution(std::vector<std::string> want, std::vector<int> number, std::vector<std::string> discount)
 {
     int answer = 0;
