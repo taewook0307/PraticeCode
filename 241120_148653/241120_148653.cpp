@@ -73,6 +73,8 @@ int solution(int storey)
     return answer;
 }
 
+// CopyStorey / 10을 통해 계속 1의 자리를 없애는게 더 쉬움
+
 int main()
 {
     std::cout << solution(16) << std::endl;         // 6
