@@ -25,13 +25,10 @@ int solution(int n)
     {
         if (n % i == 0)
         {
-            if (n / i == i)
+            answer += i;
+
+            if (n != i * i)
             {
-                answer += i;
-            }
-            else
-            {
-                answer += i;
                 answer += n / i;
             }
         }
