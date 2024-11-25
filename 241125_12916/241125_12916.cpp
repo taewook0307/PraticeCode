@@ -36,6 +36,32 @@ bool solution(std::string s)
     return pCount == yCount;
 }
 
+//bool solution(std::string s)
+//{
+//    int pCount = 0;
+//    int yCount = 0;
+//
+//    for (char C : s)
+//    {
+//        if (C == 'P' || C == 'p')
+//        {
+//            ++pCount;
+//        }
+//
+//        if (C == 'Y' || C == 'y')
+//        {
+//            ++pCount;
+//        }
+//    }
+//
+//    if (pCount == 0 && yCount == 0)
+//    {
+//        return true;
+//    }
+//
+//    return pCount == yCount;
+//}
+
 int main()
 {
     std::cout << "Hello World!\n";
