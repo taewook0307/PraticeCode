@@ -30,6 +30,8 @@ long long solution(int price, int money, int count)
     return answer > 0 ? 0 : -answer;
 }
 
+// 가우스 공식 이용하면 코드 줄이기 가능
+
 int main()
 {
     std::cout << solution(3, 20, 4) << std::endl;
