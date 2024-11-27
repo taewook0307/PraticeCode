@@ -38,6 +38,8 @@ int solution(int n)
     return answer;
 }
 
+// reverse시킨 후 for문 말고 pop_back 방법도 있음
+
 int main()
 {
     std::cout << solution(45) << std::endl;
