@@ -46,11 +46,13 @@ int journeyToMoon(int n, std::vector<std::vector<int>> astronaut)
     size_t AllGroupSize = AllGroup.size();
     for (size_t i = 0; i < AllGroupSize - 1; ++i)
     {
-        for (size_t i = i + 1; i < AllGroupSize; ++i)
+        for (size_t j = i + 1; j < AllGroupSize; ++j)
         {
             
         }
     }
+
+    return 0;
 }
 
 int main()

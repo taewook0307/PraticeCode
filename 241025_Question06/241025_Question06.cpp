@@ -10,7 +10,7 @@ std::vector<std::vector<int>> BlackType = { {1, 1, 1}, {1, 1, 2}, {1, 1, 3}, {1,
 // n : height, m : width
 int legoBlocks(int n, int m)
 {
-
+    return 0;
 }
 
 int main()
