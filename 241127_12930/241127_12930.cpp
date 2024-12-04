@@ -46,3 +46,4 @@ std::string solution(std::string s)
 int main()
 {
     std::cout << solution("try hello world") << std::endl;
+}
