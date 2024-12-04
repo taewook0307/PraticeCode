@@ -44,6 +44,8 @@ long long Calculate(long long _A, long long _B, char _Op)
         return _A - _B;
     case '*':
         return _A * _B;
+    default:
+        return 0;
     }
 }
 
