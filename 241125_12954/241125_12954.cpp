@@ -33,5 +33,5 @@ std::vector<long long> solution(int x, int n)
 int main()
 {
     std::vector<long long> Result = solution(2, 5);
-    std::vector<long long> Result = solution(4, 3);
+    std::vector<long long> Result1 = solution(4, 3);
 }
