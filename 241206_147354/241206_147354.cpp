@@ -26,7 +26,7 @@ int solution(std::vector<std::vector<int>> data, int col, int row_begin, int row
     int answer = -1;
 
     std::sort(data.begin(), data.end(),
-        [&](const std::vector<int>& _Left, const std::vector<int>& _Right)
+        [col](const std::vector<int>& _Left, const std::vector<int>& _Right)
         {
             if (_Left[col - 1] == _Right[col - 1])
             {
