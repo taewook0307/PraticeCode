@@ -55,7 +55,7 @@ int solution(std::vector<std::vector<int>> data, int col, int row_begin, int row
         }
         else
         {
-            answer = answer ^ S_i;
+            answer ^= S_i;
         }
     }
 
