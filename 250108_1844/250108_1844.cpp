@@ -9,7 +9,7 @@
 #include <array>
 #include <iostream>
 
-// 평균시간 : 0.1초
+// 평균시간 : 0.1 ~ 0.2초
 int solution(std::vector<std::vector<int>> maps)
 {
     int answer = 0;

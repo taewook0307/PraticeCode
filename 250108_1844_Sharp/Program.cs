@@ -75,7 +75,7 @@ namespace _250108_1844_Sharp
             return answer;
         }
 
-        // 평균 시간 : 1초 ~ 1.5초
+        // 평균 시간 : 1 ~ 1.5초
         //static public int solution(int[,] maps)
         //{
         //    int Row = maps.GetLength(0);
