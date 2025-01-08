@@ -87,25 +87,25 @@ namespace _250108_1844_Sharp
         //    int[,] Pay = new int[Row, Column];
         //    bool[,] IsVisited = new bool[Row, Column];
 
-        //    Queue<(int, int)> BFS = new Queue<(int, int)>();
+        //    Queue<KeyValuePair<int, int>> BFS = new Queue<KeyValuePair<int, int>>();
 
-        //    BFS.Enqueue((0, 0));
+        //    BFS.Enqueue(new KeyValuePair<int, int>(0, 0));
         //    Pay[0, 0] = 1;
         //    IsVisited[0, 0] = true;
 
-        //    while (BFS.Count > 0)
+        //    while (0 < BFS.Count)
         //    {
-        //        var (curX, curY) = BFS.Dequeue();
+        //        KeyValuePair<int, int> CurNode = BFS.Dequeue();
 
-        //        if (curX == Row - 1 && curY == Column - 1)
+        //        if (CurNode.Key == Row - 1 && CurNode.Value == Column - 1)
         //        {
-        //            return Pay[curX, curY];
+        //            return Pay[CurNode.Key, CurNode.Value];
         //        }
 
         //        for (int i = 0; i < 4; ++i)
         //        {
-        //            int NewX = curX + DirX[i];
-        //            int NewY = curY + DirY[i];
+        //            int NewX = CurNode.Key + DirX[i];
+        //            int NewY = CurNode.Value + DirY[i];
 
         //            if (NewX < 0 || NewY < 0 || NewX == Row || NewY == Column
         //                || IsVisited[NewX, NewY] || maps[NewX, NewY] == 0)
@@ -114,8 +114,8 @@ namespace _250108_1844_Sharp
         //            }
 
         //            IsVisited[NewX, NewY] = true;
-        //            Pay[NewX, NewY] = Pay[curX, curY] + 1;
-        //            BFS.Enqueue((NewX, NewY));
+        //            Pay[NewX, NewY] = Pay[CurNode.Key, CurNode.Value] + 1;
+        //            BFS.Enqueue(new KeyValuePair<int, int>(NewX, NewY));
         //        }
         //    }
 
